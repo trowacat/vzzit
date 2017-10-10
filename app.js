@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var config = require('./config');
 var base58 = require('./base58.js');
 
-const HTTP_PORT = process.env.PORT || 8080;
+const HTTP_PORT = process.env.PORT || 3000;
 
 // grab the url model
 var Url = require('./models/url');

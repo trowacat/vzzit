@@ -11,7 +11,7 @@ const HTTP_PORT = process.env.PORT || 8080;
 // grab the url model
 var Url = require('./models/url');
 
-mongoose.connect('mongodb://shorturl:Zaqmmkkl2@ds115035.mlab.com:15035/shorturl');
+mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

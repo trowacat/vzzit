@@ -1,9 +1,9 @@
 var config = {};
 
 config.db = {};
-config.webhost = 'http://localhost:3000/';
+config.webhost = '159.203.18.26';
 
-config.db.host = 'localhost';
-config.db.name = 'url_shortener';
+config.db.host = 'mongodb://shorturl:Zaqmmkkl2@ds115035.mlab.com:15035';
+config.db.name = 'shorturl';
 
 module.exports = config;

@@ -6,10 +6,12 @@ var mongoose = require('mongoose');
 var config = require('./config');
 var base58 = require('./base58.js');
 
+const HTTP_PORT = process.env.PORT || 8080;
+
 // grab the url model
 var Url = require('./models/url');
 
-mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
+mongoose.connect('mongodb://shorturl:Zaqmmkkl2@ds115035.mlab.com:15035/shorturl');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -70,6 +72,6 @@ app.get('/:encoded_id', function(req, res){
 
 });
 
-var server = app.listen(3000, function(){
-  console.log('Server listening on port 3000');
+var server = app.listen(HTTP_PORT, function(){
+  console.log('Server listening on port: ' + HTTP_PORT);
 });

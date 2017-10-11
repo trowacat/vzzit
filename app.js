@@ -14,15 +14,6 @@ var Url = require('./models/url');
 
 mongoose.connect('mongodb://' + config.db.host + '/' + config.db.name);
 
-// check link function
-function formatUrl(url)
-{
-    var httpString = "http://";
-    var httpsString = "https://";
-    if (url.substr(0, httpString.length).toLowerCase() !== httpString && url.substr(0, httpsString.length).toLowerCase() !== httpsString)
-                url = httpString + url;
-    return url;
-}
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -75,7 +66,14 @@ app.get('/:encoded_id', function (req, res) {
   // check if url already exists in database
   Url.findOne({ _id: id }, function (err, doc) {
     if (doc) {
-        res.redirect(formatUrl(doc.longUrl));
+      if (!!doc.long_url && !!doc.long_url.trim()) { //Check if url is not blank
+        doc.long_url = doc.long_url.trim(); //Removes blank spaces from start and end
+        if (!/^(https?:)?\/\//i.test(doc.long_url)) { //Checks for if url doesn't match either of: http://example.com, https://example.com AND //example.com
+          doc.long_url = 'http://' + doc.long_url; //Prepend http:// to the URL
+        }
+      } else {
+        res.redirect(doc.long_url);
+      }
     } else {
       res.redirect(config.webhost);
     }

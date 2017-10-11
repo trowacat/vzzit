@@ -71,9 +71,9 @@ app.get('/:encoded_id', function (req, res) {
         if (!/^(https?:)?\/\//i.test(doc.long_url)) { //Checks for if url doesn't match either of: http://example.com, https://example.com AND //example.com
           doc.long_url = 'http://' + doc.long_url; //Prepend http:// to the URL
         }
-      } else {
-        res.redirect(doc.long_url);
       }
+      res.redirect(doc.long_url);
+
     } else {
       res.redirect(config.webhost);
     }

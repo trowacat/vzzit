@@ -1,7 +1,3 @@
-.btn:focus, .btn-shorten:focus{
-  outline: 0 !important;
-}
-
 html,
 body {
   height: 100%;
